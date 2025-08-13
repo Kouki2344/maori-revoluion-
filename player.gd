@@ -60,7 +60,7 @@ func attack():
 	attack_cooldown_timer.start(attack_cooldown)
 	
 	if animation_player.has_animation("Attack"):
-		animation_player.play("Attack")
+		animation_player.play("Attack", -1, 0.5)
 	
 	for enemy in nearby_enemies:
 		if global_position.distance_to(enemy.global_position) <= attack_range:
