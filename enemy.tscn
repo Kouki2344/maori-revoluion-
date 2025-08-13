@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://67xuw5ugkvxj"]
+
+[ext_resource type="Script" uid="uid://dh782475t810g" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://de78xpsndvkhs" path="res://pixil-frame-0 (3) (1).png" id="1_7k104"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
+height = 42.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
+
+[node name="enemy" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(0.923046, 1.00784)
+script = ExtResource("1_4gyqm")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AttackCooldown"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(59, -27)
+shape = SubResource("CapsuleShape2D_4gyqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(57, -28)
+scale = Vector2(0.77, 0.82)
+texture = ExtResource("1_7k104")
+
+[node name="DetectionRange" type="Area2D" parent="Sprite2D"]
+position = Vector2(-3.8961, 2.43902)
+scale = Vector2(1.5225, 1.03788)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/DetectionRange"]
+position = Vector2(18.1818, -4.87805)
+scale = Vector2(10.6015, 9.55533)
+shape = SubResource("CircleShape2D_4gyqm")
+
+[node name="AttackRange" type="Area2D" parent="Sprite2D/DetectionRange"]
+position = Vector2(1.2987, 7.31707)
+scale = Vector2(1.00691, 1.12144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/DetectionRange/AttackRange"]
+position = Vector2(2.5974, -7.31707)
+scale = Vector2(2.96526, 3.72967)
+shape = SubResource("CircleShape2D_qi2p4")
+
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="Sprite2D/DetectionRange" to="." method="_on_detection_range_body_entered"]
