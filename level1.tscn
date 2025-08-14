@@ -11698,6 +11698,6 @@ shape = SubResource("RectangleShape2D_v8kj3")
 position = Vector2(1185, 318)
 shape = SubResource("RectangleShape2D_crycw")
 
-[node name="Enemy" parent="StaticBody2D4" groups=["enimies"] instance=ExtResource("5_v8kj3")]
-position = Vector2(813, 613)
-scale = Vector2(-0.876822, 0.909428)
+[node name="enemy" parent="." instance=ExtResource("5_v8kj3")]
+position = Vector2(650, 605)
+scale = Vector2(0.856142, 0.915111)

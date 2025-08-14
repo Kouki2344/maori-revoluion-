@@ -40,7 +40,7 @@ func take_damage(damage):
 	
 	# Visual feedback
 	sprite.modulate = Color.RED
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color.WHITE
 	
 	print("Player hit! (", hit_count, "/", PLAYER_DEATH_THRESHOLD, ")")
@@ -60,7 +60,7 @@ func attack():
 	attack_cooldown_timer.start(attack_cooldown)
 	
 	if animation_player.has_animation("Attack"):
-		animation_player.play("Attack", -1, 0.5)
+		animation_player.play("Attack")
 	
 	for enemy in nearby_enemies:
 		if global_position.distance_to(enemy.global_position) <= attack_range:

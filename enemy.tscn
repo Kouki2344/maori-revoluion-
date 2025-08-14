@@ -1,7 +1,63 @@
-[gd_scene load_steps=6 format=3 uid="uid://67xuw5ugkvxj"]
+[gd_scene load_steps=11 format=3 uid="uid://67xuw5ugkvxj"]
 
 [ext_resource type="Script" uid="uid://dh782475t810g" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://de78xpsndvkhs" path="res://pixil-frame-0 (3) (1).png" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://dklf2pwagydx" path="res://spritesheet.png" id="2_4gyqm"]
+
+[sub_resource type="Animation" id="Animation_qi2p4"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_iifgy"]
+resource_name = "Walk"
+
+[sub_resource type="Animation" id="Animation_epg4t"]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3yqyl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wujgv"]
+_data = {
+&"Attack": SubResource("Animation_epg4t"),
+&"Idle": SubResource("Animation_qi2p4"),
+&"RESET": SubResource("Animation_3yqyl"),
+&"Walk": SubResource("Animation_iifgy")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
 height = 42.0
@@ -18,15 +74,20 @@ script = ExtResource("1_4gyqm")
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AttackCooldown"]
+libraries = {
+&"": SubResource("AnimationLibrary_wujgv")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(59, -27)
+position = Vector2(57.4186, -27.7822)
+scale = Vector2(1.41174, 1.17415)
 shape = SubResource("CapsuleShape2D_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(57, -28)
+position = Vector2(63.9188, -27.7822)
 scale = Vector2(0.77, 0.82)
-texture = ExtResource("1_7k104")
+texture = ExtResource("2_4gyqm")
+hframes = 4
 
 [node name="DetectionRange" type="Area2D" parent="Sprite2D"]
 position = Vector2(-3.8961, 2.43902)
@@ -38,12 +99,12 @@ scale = Vector2(10.6015, 9.55533)
 shape = SubResource("CircleShape2D_4gyqm")
 
 [node name="AttackRange" type="Area2D" parent="Sprite2D/DetectionRange"]
-position = Vector2(1.2987, 7.31707)
+position = Vector2(-12.2269, 16.3038)
 scale = Vector2(1.00691, 1.12144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/DetectionRange/AttackRange"]
-position = Vector2(2.5974, -7.31707)
-scale = Vector2(2.96526, 3.72967)
+position = Vector2(14.6845, -15.5942)
+scale = Vector2(4.20843, 6.50893)
 shape = SubResource("CircleShape2D_qi2p4")
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -8,8 +8,8 @@ radius = 21.9098
 
 [sub_resource type="Animation" id="Animation_onrkg"]
 resource_name = "Attack"
-length = 5.0
-step = 1.0
+length = 0.5
+step = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,10 +17,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3, 3, 3]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
@@ -87,8 +87,8 @@ scale = Vector2(0.956563, 0.978086)
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(194, -117)
-scale = Vector2(-1.80379, 1.28884)
+position = Vector2(189.219, -123.711)
+scale = Vector2(2.18526, -4.4948)
 shape = SubResource("CircleShape2D_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -112,6 +112,7 @@ scale = Vector2(0.498803, 0.43698)
 shape = SubResource("CircleShape2D_4flbx")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

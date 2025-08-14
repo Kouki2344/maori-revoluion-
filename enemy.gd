@@ -7,9 +7,9 @@ var hit_count: int = 0
 @export var death_threshold_range: Vector2i = Vector2i(3, 5)
 var death_threshold: int
 @export var attack_damage: int = 10
-@export var attack_range: float = 30.0
+@export var attack_range: float = 20.0
 @export var attack_cooldown: float = 1.0
-@export var detection_range: float = 300.0
+@export var detection_range: float = 200.0
 
 var player_ref: Node = null
 var can_attack: bool = true
@@ -35,7 +35,7 @@ func _physics_process(delta):
 			move_and_slide()
 			
 			if direction.x != 0:
-				$Sprite2D.flip_h = direction.x < 0
+				$Sprite2D.flip_h = direction.x > 0
 
 func take_damage(damage):
 	hit_count += 1
