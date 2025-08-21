@@ -30,7 +30,7 @@ scale = Vector2(1.58405, 1.05787)
 theme = SubResource("Theme_mcy63")
 theme_override_styles/hover = SubResource("StyleBoxFlat_g3bd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_krrsl")
-text = "67"
+text = "1"
 script = ExtResource("1_pssaq")
 
 [node name="level 2 button" type="Button" parent="level 1 button"]

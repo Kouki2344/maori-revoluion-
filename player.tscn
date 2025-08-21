@@ -8,8 +8,8 @@ radius = 21.9098
 
 [sub_resource type="Animation" id="Animation_onrkg"]
 resource_name = "Attack"
-length = 0.5
-step = 10.0
+length = 0.3
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,8 +87,8 @@ scale = Vector2(0.956563, 0.978086)
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(189.219, -123.711)
-scale = Vector2(2.18526, -4.4948)
+position = Vector2(188.174, -129.845)
+scale = Vector2(2.75636, -5.25499)
 shape = SubResource("CircleShape2D_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -108,7 +108,7 @@ scale = Vector2(1.24915, 1.3555)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(208, -132)
-scale = Vector2(0.498803, 0.43698)
+scale = Vector2(0.49283, 0.361065)
 shape = SubResource("CircleShape2D_4flbx")
 
 [node name="AttackCooldown" type="Timer" parent="."]

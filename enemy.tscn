@@ -18,24 +18,6 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_iifgy"]
-resource_name = "Walk"
-
-[sub_resource type="Animation" id="Animation_epg4t"]
-resource_name = "Attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_3yqyl"]
 length = 0.001
 tracks/0/type = "value"
@@ -51,12 +33,42 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_epg4t"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_iifgy"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wujgv"]
 _data = {
-&"Attack": SubResource("Animation_epg4t"),
 &"Idle": SubResource("Animation_qi2p4"),
 &"RESET": SubResource("Animation_3yqyl"),
-&"Walk": SubResource("Animation_iifgy")
+&"attack": SubResource("Animation_epg4t"),
+&"walk": SubResource("Animation_iifgy")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
@@ -67,6 +79,7 @@ height = 42.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
 
 [node name="enemy" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(-1, 1)
 scale = Vector2(0.923046, 1.00784)
 script = ExtResource("1_4gyqm")
 
@@ -91,16 +104,16 @@ hframes = 4
 
 [node name="DetectionRange" type="Area2D" parent="Sprite2D"]
 position = Vector2(-3.8961, 2.43902)
-scale = Vector2(1.5225, 1.03788)
+scale = Vector2(1.63561, 0.509798)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/DetectionRange"]
-position = Vector2(18.1818, -4.87805)
-scale = Vector2(10.6015, 9.55533)
+position = Vector2(0.661629, -4.78426)
+scale = Vector2(9.58126, 20.9684)
 shape = SubResource("CircleShape2D_4gyqm")
 
 [node name="AttackRange" type="Area2D" parent="Sprite2D/DetectionRange"]
-position = Vector2(-12.2269, 16.3038)
-scale = Vector2(1.00691, 1.12144)
+position = Vector2(-7.94051, 16.5776)
+scale = Vector2(0.670714, 1.53622)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/DetectionRange/AttackRange"]
 position = Vector2(14.6845, -15.5942)

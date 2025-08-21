@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://bb8ue1onvsgby"]
+[gd_scene load_steps=20 format=4 uid="uid://bb8ue1onvsgby"]
 
 [ext_resource type="Texture2D" uid="uid://pygl2nk65qin" path="res://terrain_atlas.png" id="1_ootpb"]
 [ext_resource type="PackedScene" uid="uid://btolve1lk1hi4" path="res://player.tscn" id="2_dopym"]
 [ext_resource type="Texture2D" uid="uid://duxju16nmmeia" path="res://Scene/Scirpt/craftpix-net-504452-free-village-pixel-tileset-for-top-down-defense/1.1 Tiles/Tileset2.png" id="2_v38iq"]
+[ext_resource type="PackedScene" uid="uid://bspwvdv0s03ao" path="res://pause_menu.tscn" id="5_crycw"]
 [ext_resource type="PackedScene" uid="uid://67xuw5ugkvxj" path="res://enemy.tscn" id="5_v8kj3"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jwv3a"]
@@ -11699,5 +11700,15 @@ position = Vector2(1185, 318)
 shape = SubResource("RectangleShape2D_crycw")
 
 [node name="enemy" parent="." instance=ExtResource("5_v8kj3")]
-position = Vector2(650, 605)
-scale = Vector2(0.856142, 0.915111)
+position = Vector2(42, 376)
+scale = Vector2(0.852232, 0.969895)
+
+[node name="enemy2" parent="." instance=ExtResource("5_v8kj3")]
+position = Vector2(660, 535)
+scale = Vector2(0.97064, 1.03919)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_crycw")]
+offset_top = 1.0
+offset_bottom = 1.0
