@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 150.0
+@export var speed: float = 200.0
 @export var max_health: int = 100
 var health: int = max_health
 var hit_count: int = 0  
@@ -9,7 +9,7 @@ var death_threshold: int
 @export var attack_damage: int = 10
 @export var attack_range: float = 50
 @export var attack_cooldown: float = 1.0
-@export var detection_range: float = 250.0
+@export var detection_range: float = 300.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer if has_node("AnimationPlayer") else null
 @onready var attack_range_area: Area2D = $AttackRange

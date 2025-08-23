@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btolve1lk1hi4"]
+[gd_scene load_steps=11 format=3 uid="uid://btolve1lk1hi4"]
 
 [ext_resource type="Texture2D" uid="uid://bdwekdaol7s63" path="res://spritesheet (2).png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dmilbfkm8qya5" path="res://player.gd" id="1_onrkg"]
@@ -81,6 +81,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
 radius = 308.12
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(64.3613, 130.644)
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1, 1)
 scale = Vector2(0.956563, 0.978086)
@@ -113,6 +116,14 @@ shape = SubResource("CircleShape2D_4flbx")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(187.128, -120.644)
+shape = SubResource("RectangleShape2D_onrkg")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

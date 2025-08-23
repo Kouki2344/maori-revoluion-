@@ -5,10 +5,10 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 
 # Combat variables
-@export var max_health: int = 100
+@export var max_health: int = 200
 var health: int = max_health
 var hit_count: int = 0
-const PLAYER_DEATH_THRESHOLD: int = 10  # Die after 10 hits
+const PLAYER_DEATH_THRESHOLD: int = 20  # Die after 20 hits
 @export var attack_damage: int = 20
 @export var attack_range: float = 100.0
 @export var attack_cooldown: float = 0.5  
@@ -16,6 +16,20 @@ const PLAYER_DEATH_THRESHOLD: int = 10  # Die after 10 hits
 @onready var attack_cooldown_timer = $AttackCooldown
 var can_attack: bool = true
 var nearby_enemies: Array = []
+
+# Health bar reference - use @onready to ensure it's loaded
+@onready var health_bar: TextureProgressBar = $HealthBar
+
+func _ready():
+	# Initialize health - wait for health_bar to be ready
+	health = max_health
+	
+	# Check if health_bar exists before accessing it
+	if health_bar:
+		health_bar.max_value = max_health
+		health_bar.value = health
+	else:
+		print("HealthBar node not found!")
 
 func _physics_process(delta):
 	# Movement (always allowed, even while attacking)
@@ -68,16 +82,32 @@ func _on_attack_range_body_exited(body):
 func take_damage(damage):
 	hit_count += 1
 	health -= damage
+	
+	# Update health bar if it exists
+	if health_bar:
+		health_bar.value = health
+	
+	# Flash effect
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color.WHITE
-	print("Player hit! (", hit_count, "/", PLAYER_DEATH_THRESHOLD, ")")
-	if hit_count >= PLAYER_DEATH_THRESHOLD:
+	
+	print("Player hit! (", hit_count, "/", PLAYER_DEATH_THRESHOLD, ") Health: ", health)
+	
+	if hit_count >= PLAYER_DEATH_THRESHOLD or health <= 0:
 		die()
 
 func die():
+	print("Player died!")
 	sprite.modulate = Color.RED
+	
+	# Create tween for fade out
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
+	
+	# Also fade out health bar if it exists
+	if health_bar:
+		tween.parallel().tween_property(health_bar, "modulate:a", 0.0, 0.5)
+	
 	await tween.finished
 	queue_free()
