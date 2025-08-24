@@ -83,12 +83,8 @@ func attack():
 	can_attack = false
 	is_attacking = true
 	
-	# Play attack animation based on direction
-	var attack_dir = (player_ref.global_position - global_position).normalized()
-	var attack_anim = "attack_side"  # Default
-	
-	if abs(attack_dir.y) > abs(attack_dir.x):  # Vertical attack
-		attack_anim = "attack_down" if attack_dir.y > 0 else "attack_up"
+	# Always use the same attack animation
+	var attack_anim = "attack"  # Change this to match your single attack animation name
 	
 	if animation_player and animation_player.has_animation(attack_anim):
 		animation_player.play(attack_anim)

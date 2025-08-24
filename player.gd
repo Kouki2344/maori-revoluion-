@@ -17,14 +17,21 @@ const PLAYER_DEATH_THRESHOLD: int = 20  # Die after 20 hits
 var can_attack: bool = true
 var nearby_enemies: Array = []
 
-# Health bar reference - use @onready to ensure it's loaded
+# Health bar reference
 @onready var health_bar: TextureProgressBar = $HealthBar
 
+# Damage per hit (calculated based on max health and death threshold)
+var damage_per_hit: int
+
 func _ready():
-	# Initialize health - wait for health_bar to be ready
+	# Calculate how much damage each hit should do
+	damage_per_hit = max_health / PLAYER_DEATH_THRESHOLD
+	print("Each hit will reduce health by: ", damage_per_hit)
+	
+	# Initialize health
 	health = max_health
 	
-	# Check if health_bar exists before accessing it
+	# Setup health bar
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = health
@@ -81,7 +88,8 @@ func _on_attack_range_body_exited(body):
 # Damage & Death 
 func take_damage(damage):
 	hit_count += 1
-	health -= damage
+	health -= damage_per_hit  # Use consistent damage per hit
+	health = max(0, health)  # Ensure health doesn't go below 0
 	
 	# Update health bar if it exists
 	if health_bar:

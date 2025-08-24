@@ -180,8 +180,8 @@ position = Vector2(787.268, 515.69)
 scale = Vector2(2.03514, 2.10263)
 texture = ExtResource("8_w34a2")
 
-[connection signal="pressed" from="Start button" to="Start button" method="_on_pressed"]
 [connection signal="pressed" from="Start button" to="Start button" method="_on_start_pressed"]
+[connection signal="pressed" from="Start button" to="Start button" method="_on_pressed"]
 [connection signal="pressed" from="Start button/Quit button" to="Start button" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Start button/Help button" to="Start button/Help button" method="_on_pressed"]
 [connection signal="pressed" from="Start button/Help button" to="Start button/Help button" method="_on_helpbutton_pressed"]
+[connection signal="pressed" from="Start button/Help button" to="Start button/Help button" method="_on_pressed"]
