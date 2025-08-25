@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://d2olov0bosj7y"]
-
-[node name="TileMap" type="TileMap"]
-format = 2
