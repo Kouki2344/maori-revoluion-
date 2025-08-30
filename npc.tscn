@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dexoliqquf8uh"]
+
+[ext_resource type="Texture2D" uid="uid://ws7c6aakuh4b" path="res://npc.png" id="1_ideak"]
+[ext_resource type="Script" uid="uid://84svjk4hnt6y" path="res://npc.gd" id="1_xxcha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxcha"]
+atlas = ExtResource("1_ideak")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kh24r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxcha")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ul7y6"]
+radius = 26.4008
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bc6q4"]
+
+[node name="npc" type="CharacterBody2D"]
+script = ExtResource("1_xxcha")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(78, -78)
+scale = Vector2(3.45395, 3.27339)
+sprite_frames = SubResource("SpriteFrames_kh24r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(85, -53)
+scale = Vector2(1.20367, 1.4878)
+shape = SubResource("CircleShape2D_ul7y6")
+
+[node name="chat_detection_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chat_detection_area"]
+position = Vector2(84, -71)
+scale = Vector2(-14.4325, -14.6139)
+shape = SubResource("CircleShape2D_bc6q4")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

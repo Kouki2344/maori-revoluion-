@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var restart_button = $RestartButton
 @onready var quit_button = $QuitButton
 
+
 func _ready():
 	visible = false
 	

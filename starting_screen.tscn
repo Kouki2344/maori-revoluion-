@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cpe54pc0uwiul"]
 
-[ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://Scene/Scirpt/starting_screen.gd" id="1_mdfg2"]
+[ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://starting_screen.gd" id="1_mdfg2"]
 [ext_resource type="Texture2D" uid="uid://cyg4pjfe2d8m7" path="res://M-ORI-REVOLUTION-7-24-2025.png" id="2_l0vbx"]
 [ext_resource type="Texture2D" uid="uid://c3ul3eh77wwh3" path="res://pixil-frame-0 (3).png" id="4_grbrr"]
 [ext_resource type="Texture2D" uid="uid://cnhxyd0eeah1v" path="res://Untitled design (1).png" id="5_grbrr"]

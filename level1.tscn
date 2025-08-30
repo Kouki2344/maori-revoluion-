@@ -2,9 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://pygl2nk65qin" path="res://terrain_atlas.png" id="1_ootpb"]
 [ext_resource type="PackedScene" uid="uid://btolve1lk1hi4" path="res://player.tscn" id="2_dopym"]
-[ext_resource type="Texture2D" uid="uid://duxju16nmmeia" path="res://Scene/Scirpt/craftpix-net-504452-free-village-pixel-tileset-for-top-down-defense/1.1 Tiles/Tileset2.png" id="2_v38iq"]
+[ext_resource type="Texture2D" uid="uid://duxju16nmmeia" path="res://Tileset2.png" id="2_v38iq"]
 [ext_resource type="Texture2D" uid="uid://du65fe7231spm" path="res://Maori tileset.png" id="3_hx44q"]
-[ext_resource type="PackedScene" uid="uid://d4uq2n1ccea6" path="res://EnemyManager.tscn" id="4_eqrsh"]
 [ext_resource type="PackedScene" uid="uid://d2n1q4ithmvk7" path="res://GameManager.tscn" id="5_3l65w"]
 [ext_resource type="PackedScene" uid="uid://bspwvdv0s03ao" path="res://pause_menu.tscn" id="5_crycw"]
 [ext_resource type="PackedScene" uid="uid://67xuw5ugkvxj" path="res://enemy.tscn" id="5_v8kj3"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dba31wyqduldp" path="res://Blood bar.png" id="7_mx85b"]
 [ext_resource type="Texture2D" uid="uid://dbaimldkj83hn" path="res://Maori house1.png" id="8_xy4tn"]
 [ext_resource type="Texture2D" uid="uid://datp8vxgv7qk8" path="res://Map.png" id="15_3l65w"]
+[ext_resource type="AudioStream" uid="uid://dqjkghgvg3jo5" path="res://Level1&2 BGM.mp3" id="16_1idop"]
 [ext_resource type="Script" uid="uid://d3lh3n2nths01" path="res://map.gd" id="16_rjtee"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jwv3a"]
@@ -15648,6 +15648,8 @@ texture = ExtResource("1_ootpb")
 [sub_resource type="TileSet" id="TileSet_hx44q"]
 sources/0 = SubResource("TileSetAtlasSource_mx85b")
 
+[sub_resource type="GDScript" id="GDScript_mx85b"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ootpb"]
 size = Vector2(1353, 23)
 
@@ -15666,12 +15668,10 @@ size = Vector2(660, 94)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mx85b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx85b"]
-size = Vector2(309, 65.5)
+size = Vector2(309, 52.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hx44q"]
 size = Vector2(206.964, 130)
-
-[sub_resource type="GDScript" id="GDScript_mx85b"]
 
 [node name="TileMap" type="TileMap"]
 position = Vector2(0, 1)
@@ -15699,8 +15699,6 @@ tile_set = SubResource("TileSet_crycw")
 tile_map_data = PackedByteArray("AAAtABYAAAAaAC4AAAAtABcAAAAaAC8AAAAuABYAAAAbAC4AAAAuABcAAAAbAC8AAAArABIAAAAaAC4AAAArABMAAAAaAC8AAAAsABIAAAAbAC4AAAAsABMAAAAbAC8AAAArABYAAAAaAC4AAAArABcAAAAaAC8AAAAsABYAAAAbAC4AAAAsABcAAAAbAC8AAAAtABEAAAA2ADUAAAAtABIAAAA2ADYAAAAtABMAAAA2ADcAAAAuABEAAAA3ADUAAAAuABIAAAA3ADYAAAAuABMAAAA3ADcAAAAvABEAAAA4ADUAAAAvABIAAAA4ADYAAAAvABMAAAA4ADcAAAAwABEAAAA5ADUAAAAwABIAAAA5ADYAAAAwABMAAAA5ADcAAAA=")
 tile_set = SubResource("TileSet_hx44q")
 
-[node name="GameManager" parent="." instance=ExtResource("4_eqrsh")]
-
 [node name="EnemyManger" parent="." instance=ExtResource("5_3l65w")]
 
 [node name="Player" parent="." instance=ExtResource("2_dopym")]
@@ -15708,6 +15706,17 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(107, 601)
 scale = Vector2(0.305376, 0.289423)
+
+[node name="HealthBar" type="TextureProgressBar" parent="Player"]
+offset_left = 42.5705
+offset_top = -310.964
+offset_right = 836.57
+offset_bottom = -186.964
+scale = Vector2(0.387823, 0.425773)
+max_value = 200.0
+texture_under = ExtResource("6_5j5gb")
+texture_progress = ExtResource("7_mx85b")
+script = SubResource("GDScript_mx85b")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(174, -151)
@@ -15764,7 +15773,7 @@ shape = SubResource("CapsuleShape2D_mx85b")
 [node name="StaticBody2D7" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
-position = Vector2(845.5, 338)
+position = Vector2(845.5, 331.625)
 shape = SubResource("RectangleShape2D_mx85b")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="."]
@@ -15787,12 +15796,16 @@ position = Vector2(324, 133)
 scale = Vector2(1.09612, 1.12641)
 
 [node name="enemy4" parent="." instance=ExtResource("5_v8kj3")]
-position = Vector2(8, 232)
+position = Vector2(-5, 181)
 scale = Vector2(1.02511, 1.11598)
 
 [node name="enemy5" parent="." instance=ExtResource("5_v8kj3")]
-position = Vector2(978, 383)
+position = Vector2(988, 408)
 scale = Vector2(0.942142, 1.07992)
+
+[node name="enemy6" parent="." instance=ExtResource("5_v8kj3")]
+position = Vector2(44, 266)
+scale = Vector2(1.02251, 1.08406)
 
 [node name="VictoryScreen" parent="." instance=ExtResource("6_n8vhr")]
 layer = 10
@@ -15801,17 +15814,10 @@ visible = false
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_crycw")]
-offset_top = 1.0
-offset_bottom = 1.0
-
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_right = 794.0
-offset_bottom = 124.0
-scale = Vector2(0.387823, 0.425773)
-max_value = 200.0
-texture_under = ExtResource("6_5j5gb")
-texture_progress = ExtResource("7_mx85b")
-script = SubResource("GDScript_mx85b")
+offset_left = 1.0
+offset_top = -18.0
+offset_right = 1.0
+offset_bottom = -18.0
 
 [node name="TutorialSign1" type="Sprite2D" parent="."]
 position = Vector2(36, 513)
@@ -15834,3 +15840,8 @@ rotation = -0.314053
 scale = Vector2(0.0606292, 0.0639539)
 texture = ExtResource("15_3l65w")
 script = ExtResource("16_rjtee")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_1idop")
+autoplay = true
+attenuation = 0.00112177

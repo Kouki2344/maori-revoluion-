@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxot8oe0qjdrb"]
 
 [ext_resource type="Texture2D" uid="uid://c5v7sq05qw5hi" path="res://Help.png" id="1_e3oed"]
-[ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://Scene/Scirpt/starting_screen.gd" id="2_4abyq"]
+[ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://starting_screen.gd" id="2_4abyq"]
 
 [sub_resource type="Theme" id="Theme_l2nui"]
 

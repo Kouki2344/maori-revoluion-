@@ -9,7 +9,7 @@ var death_threshold: int
 @export var attack_damage: int = 10
 @export var attack_range: float = 50
 @export var attack_cooldown: float = 1.0
-@export var detection_range: float = 300.0
+@export var detection_range: float = 350.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer if has_node("AnimationPlayer") else null
 @onready var attack_range_area: Area2D = $AttackRange

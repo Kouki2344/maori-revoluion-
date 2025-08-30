@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ithb25rl0sqb"]
 
-[ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://Scene/Scirpt/starting_screen.gd" id="1_pssaq"]
+[ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://starting_screen.gd" id="1_pssaq"]
 
 [sub_resource type="Theme" id="Theme_mcy63"]
 default_font_size = 40
