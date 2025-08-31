@@ -23,7 +23,6 @@ var is_chasing: bool = false
 
 func _ready():
 	death_threshold = randi_range(death_threshold_range.x, death_threshold_range.y)
-	print("Enemy spawned! Will die after ", death_threshold, " hits")
 	
 	# Configure collision shapes
 	if attack_range_area:
@@ -114,6 +113,7 @@ func take_damage(damage):
 		die()
 
 func die():
+	
 	# Play death animation if available
 	if animation_player and animation_player.has_animation("death"):
 		animation_player.play("death")
@@ -130,12 +130,10 @@ func die():
 func _on_detection_range_body_entered(body):
 	if body.name == "Player" or body.is_in_group("player"):
 		player_ref = body
-		print("Player detected!")
 
 func _on_detection_range_body_exited(body):
 	if body == player_ref:
 		player_ref = null
-		print("Player lost")
 
 func _on_attack_range_body_entered(body):
 	if body.name == "Player" or body.is_in_group("player"):

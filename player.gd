@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 220
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
+var defeat_menu: Node
 
 #Player variables
 @export var max_health: int = 200
@@ -24,7 +25,7 @@ var damage_per_hit: int
 func _ready():
 	#Calculate damage per hit
 	damage_per_hit = max_health / PLAYER_DEATH_THRESHOLD
-	print("Each hit reduces health by: ", damage_per_hit)
+	defeat_menu = get_node("../DefeatMenu")
 	
 	#Initialize health
 	health = max_health
@@ -35,10 +36,34 @@ func _ready():
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = health
-		print("HealthBar initialized successfully")
 	
 	#Add to player group
 	add_to_group("player")
+	
+	connect_to_enemy_manager()
+
+func connect_to_enemy_manager():
+	var enemy_manager = get_tree().get_first_node_in_group("enemy_manager")
+	if enemy_manager:
+		if enemy_manager.has_signal("health_gain_triggered"):
+			enemy_manager.health_gain_triggered.connect(gain_health_from_kills)
+
+#Make sure healing doesen't go over maximum value
+func gain_health_from_kills(amount: int):
+	health += amount
+	health = min(health, max_health)  
+	
+	#Update health bar
+	if health_bar:
+		health_bar.value = health
+
+	show_health_gain_effect()
+
+func show_health_gain_effect():
+	#Healing green flash effect 
+	sprite.modulate = Color.GREEN
+	var tween = create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.5)
 
 func find_health_bar():
 	health_bar = get_node_or_null("HealthBar")
@@ -52,7 +77,7 @@ func create_fallback_health_bar():
 	add_child(health_bar)
 
 func _physics_process(delta):
-	#Player movement
+	#Player movement and animation
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if input_dir != Vector2.ZERO:
 		velocity = input_dir * speed
@@ -114,12 +139,12 @@ func take_damage(damage_amount: int = 0):
 	sprite.modulate = Color.WHITE
 	
 	#Output message 
-	print("Player hit! (", hit_count, "/", PLAYER_DEATH_THRESHOLD, ") Health: ", health)
+	print("Player hit! Health: ", health)
 	
-	if hit_count >= PLAYER_DEATH_THRESHOLD or health <= 0:
+	if health <= 0:
 		die()
 
-#Player death
+#Death effect
 func die():
 	print("Player died!")
 	sprite.modulate = Color.RED
@@ -131,4 +156,9 @@ func die():
 		tween.parallel().tween_property(health_bar, "modulate:a", 0.0, 0.5)
 	
 	await tween.finished
+	
+	#Show defeat menu
+	if defeat_menu:
+		defeat_menu.show_menu()
+	
 	queue_free()

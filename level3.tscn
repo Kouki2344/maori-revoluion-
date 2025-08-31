@@ -1,6 +1,8 @@
-[gd_scene load_steps=37 format=4 uid="uid://bt41b1myra5p2"]
+[gd_scene load_steps=41 format=4 uid="uid://bt41b1myra5p2"]
 
 [ext_resource type="Texture2D" uid="uid://pygl2nk65qin" path="res://terrain_atlas.png" id="1_qrujo"]
+[ext_resource type="PackedScene" uid="uid://d4uq2n1ccea6" path="res://EnemyManager.tscn" id="1_siwpi"]
+[ext_resource type="Script" uid="uid://c36qpljqrwpjf" path="res://EnemeyManager.gd" id="2_0m7xm"]
 [ext_resource type="Texture2D" uid="uid://bhgi5tmswib8s" path="res://FieldsTileset.png" id="2_5lcx6"]
 [ext_resource type="Texture2D" uid="uid://duxju16nmmeia" path="res://Tileset2.png" id="3_an40m"]
 [ext_resource type="PackedScene" uid="uid://btolve1lk1hi4" path="res://player.tscn" id="4_5lcx6"]
@@ -11,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://dba31wyqduldp" path="res://Blood bar.png" id="7_ymh28"]
 [ext_resource type="Texture2D" uid="uid://cd50aw2tlbp5w" path="res://Maori people.png" id="8_8x87a"]
 [ext_resource type="Texture2D" uid="uid://cidl70rbfl5ys" path="res://Cage.png" id="9_ci4mn"]
+[ext_resource type="PackedScene" uid="uid://d2pfnmrwr3dnw" path="res://defeat_menu.tscn" id="12_ymh28"]
+[ext_resource type="PackedScene" uid="uid://bspwvdv0s03ao" path="res://pause_menu.tscn" id="13_7oc4e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mu84n"]
 texture = ExtResource("1_qrujo")
@@ -15675,6 +15679,9 @@ size = Vector2(175.007, 116.817)
 
 [node name="Node2D" type="Node2D"]
 
+[node name="EnemyManager" parent="." instance=ExtResource("1_siwpi")]
+script = ExtResource("2_0m7xm")
+
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
 
@@ -15742,16 +15749,19 @@ position = Vector2(-9.99997, 379)
 scale = Vector2(1.26871, 1.20166)
 
 [node name="enemy6" parent="." instance=ExtResource("6_mu84n")]
-position = Vector2(965, 496)
+position = Vector2(835, 360)
 
 [node name="enemy7" parent="." instance=ExtResource("6_mu84n")]
-position = Vector2(967, 570)
+position = Vector2(841, 694)
 
 [node name="enemy8" parent="." instance=ExtResource("6_mu84n")]
-position = Vector2(931, 641)
+position = Vector2(888, 615)
 
 [node name="enemy9" parent="." instance=ExtResource("6_mu84n")]
-position = Vector2(929, 424)
+position = Vector2(878, 436)
+
+[node name="enemy10" parent="." instance=ExtResource("6_mu84n")]
+position = Vector2(921, 525)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -15860,3 +15870,11 @@ z_index = 1
 position = Vector2(1214, 497)
 scale = Vector2(0.568372, 0.439858)
 texture = ExtResource("9_ci4mn")
+
+[node name="DefeatMenu" parent="." instance=ExtResource("12_ymh28")]
+layer = 10
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("13_7oc4e")]

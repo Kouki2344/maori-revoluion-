@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var amplitude: float = 8.0    #How high it moves
+@export var amplitude: float = 7.0    #How high it moves
 @export var frequency: float = 1.0     #How fast it moves
 @export var vertical_offset: float = 0.0  #Base position 
 

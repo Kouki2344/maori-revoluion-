@@ -8,9 +8,7 @@ var time: float = 0.0
 
 func _ready():
 	original_position = position
-	# Randomize starting time for variety
-	time = randf() * 100.0
-
+	
 func _process(delta):
 	time += delta * shake_speed
 	

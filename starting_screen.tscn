@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpe54pc0uwiul"]
+[gd_scene load_steps=20 format=3 uid="uid://cpe54pc0uwiul"]
 
 [ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://starting_screen.gd" id="1_mdfg2"]
 [ext_resource type="Texture2D" uid="uid://cyg4pjfe2d8m7" path="res://M-ORI-REVOLUTION-7-24-2025.png" id="2_l0vbx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://blvluj5nscyvk" path="res://—Pngtree—floating realistic clouds_8623463.png" id="7_bb5qi"]
 [ext_resource type="Script" uid="uid://dofkovu5bmtkb" path="res://clouds.gd" id="7_w34a2"]
 [ext_resource type="Texture2D" uid="uid://de78xpsndvkhs" path="res://pixil-frame-0 (3) (1).png" id="8_w34a2"]
+[ext_resource type="Texture2D" uid="uid://uogio0x0ld83" path="res://BOSS.png" id="9_k2t2y"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l0vbx"]
 
@@ -166,7 +167,7 @@ scale = Vector2(0.0287129, 0.041674)
 texture = ExtResource("6_jrgtf")
 
 [node name="Clouds" type="Sprite2D" parent="."]
-position = Vector2(903.603, 224.345)
+position = Vector2(918.647, 210.134)
 scale = Vector2(0.322988, 0.334751)
 texture = ExtResource("7_bb5qi")
 script = ExtResource("7_w34a2")
@@ -178,9 +179,14 @@ texture = ExtResource("7_bb5qi")
 flip_h = true
 
 [node name="Enemy" type="Sprite2D" parent="."]
-position = Vector2(787.268, 515.69)
+position = Vector2(756.179, 515.69)
 scale = Vector2(2.03514, 2.10263)
 texture = ExtResource("8_w34a2")
+
+[node name="Boss" type="Sprite2D" parent="."]
+position = Vector2(970.797, 488.281)
+scale = Vector2(-3.775, 4.44114)
+texture = ExtResource("9_k2t2y")
 
 [connection signal="pressed" from="Start button" to="Start button" method="_on_start_pressed"]
 [connection signal="pressed" from="Start button" to="Start button" method="_on_pressed"]

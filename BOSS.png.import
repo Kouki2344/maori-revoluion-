@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://60vnl4c8lnmy"
-path="res://.godot/imported/road_9.png-43f29e6b7529738ff0051af593475c13.ctex"
+uid="uid://uogio0x0ld83"
+path="res://.godot/imported/BOSS.png-20099834a724f74118b908a425f844e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scene/Scirpt/PNG/road/road_9.png"
-dest_files=["res://.godot/imported/road_9.png-43f29e6b7529738ff0051af593475c13.ctex"]
+source_file="res://BOSS.png"
+dest_files=["res://.godot/imported/BOSS.png-20099834a724f74118b908a425f844e7.ctex"]
 
 [params]
 
