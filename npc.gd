@@ -1,66 +1,90 @@
-extends CharacterBody2D
+extends Area2D
 
-@export var npc_name: String = "Villager"
-@export_multiline var dialogue_text: String = "Hello there, traveler!"
+#Dialogue content
+var dialogue_text = [
+	"Tāne (head of village): 
+		Hello there young man!",
+	"Tāne: 
+		My village got invaded.", 
+	"Tāne: 
+		All the villagers and your 
+		family got captured by 
+		Whiro (God of darkness).",
+	"You: 
+		Oh no!",
+	"Tāne: 
+		Can you help me to save them 
+		and bring peace back to 
+			this village?",
+	"You: 
+		YES, I will try my best
+		to help.",
+	"Tāne: 
+		Thank you so much young man!",
+	"Tāne: 
+		But be very careful, there 
+		are enemies everywhere.",
+	"Tāne:
+		Press E or click to attack!",
+	"You:
+		 Got it!",
+	"Tāne: 
+		Waimarie! (good luck)"
+]
 
-@onready var interaction_indicator = $InteractionIndicator
-@onready var dialogue_box = $DialogueBox
+var current_line = 0
+var dialogue_active = false
+var player_in_range = false
+var player_ref: Node2D = null
 
-var player_in_range: bool = false
-var is_interacting: bool = false
+@onready var label = $Label
+@onready var panel = $Panel
+@onready var collision_shape = $CollisionShape2D
 
 func _ready():
-	# Hide interaction indicator initially
-	if interaction_indicator:
-		interaction_indicator.visible = false
+	hide_dialogue()
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 	
-	# Hide dialogue box initially
-	if dialogue_box:
-		dialogue_box.visible = false
+	#Set radius to 40
+	if collision_shape and collision_shape.shape is CircleShape2D:
+		collision_shape.shape.radius = 40
 	
-	print(npc_name + " is ready for interaction")
-
-func _process(delta):
-	# Show/hide interaction indicator based on player proximity
-	if interaction_indicator:
-		interaction_indicator.visible = player_in_range and not is_interacting
-
-func _input(event):
-	if event.is_action_pressed("ui_accept") and player_in_range and not is_interacting:
-		start_interaction()
-
-func start_interaction():
-	is_interacting = true
-	print("Interacting with " + npc_name)
-	
-	# Show dialogue box
-	if dialogue_box:
-		dialogue_box.show_dialogue(npc_name, dialogue_text)
-	
-	# Disable player movement during interaction (optional)
-	get_tree().call_group("player", "set_interaction_mode", true)
-
-func end_interaction():
-	is_interacting = false
-	print("Ended interaction with " + npc_name)
-	
-	# Hide dialogue box
-	if dialogue_box:
-		dialogue_box.hide()
-	
-	# Re-enable player movement
-	get_tree().call_group("player", "set_interaction_mode", false)
-
-# Player detection
-func _on_interaction_area_body_entered(body):
+func _on_body_entered(body):
 	if body.is_in_group("player"):
 		player_in_range = true
-		print("Player entered interaction range")
+		player_ref = body
 
-func _on_interaction_area_body_exited(body):
+func _on_body_exited(body):
 	if body.is_in_group("player"):
 		player_in_range = false
-		print("Player left interaction range")
-		if is_interacting:
-			end_interaction()
-		
+		player_ref = null
+		if dialogue_active:
+			hide_dialogue()
+
+func show_dialogue():
+	dialogue_active = true
+	panel.visible = true
+	label.visible = true
+	current_line = 0
+	show_next_line()
+
+func hide_dialogue():
+	dialogue_active = false
+	panel.visible = false
+	label.visible = false
+
+func show_next_line():
+	if current_line < dialogue_text.size():
+		label.text = dialogue_text[current_line]
+		current_line += 1
+	else:
+		hide_dialogue()
+
+#Space to interact
+func _input(event):
+	if event.is_action_pressed("interact"):
+		if player_in_range and not dialogue_active:
+			show_dialogue()
+		elif dialogue_active:
+			show_next_line()

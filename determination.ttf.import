@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://d023wvcl4gxnk"
-path="res://.godot/imported/BravenRegular.otf-ba9a06e92c7c724b4667d1ea248e9cc9.fontdata"
+uid="uid://mlwgs8nqapxv"
+path="res://.godot/imported/determination.ttf-bbd608e1823e90b57c24285643460bac.fontdata"
 
 [deps]
 
-source_file="res://BravenRegular.otf"
-dest_files=["res://.godot/imported/BravenRegular.otf-ba9a06e92c7c724b4667d1ea248e9cc9.fontdata"]
+source_file="res://determination.ttf"
+dest_files=["res://.godot/imported/determination.ttf-bbd608e1823e90b57c24285643460bac.fontdata"]
 
 [params]
 

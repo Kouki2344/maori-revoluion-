@@ -8,7 +8,7 @@ var original_y: float
 var time: float = 0.0
 
 func _ready():
-	#Keep the original Y position
+	#Keeping the original Y position
 	original_y = position.y
 
 func _process(delta):

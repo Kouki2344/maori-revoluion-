@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb60gacwcrcix"
-path="res://.godot/imported/dialogue.png-a6d80cd1126997e66bc59b6d892de1d6.ctex"
+uid="uid://v4id1efnjdq4"
+path="res://.godot/imported/Victory popup3.png-9b1586a32d9501d1b97d3a690f83371c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogue.png"
-dest_files=["res://.godot/imported/dialogue.png-a6d80cd1126997e66bc59b6d892de1d6.ctex"]
+source_file="res://Victory popup3.png"
+dest_files=["res://.godot/imported/Victory popup3.png-9b1586a32d9501d1b97d3a690f83371c.ctex"]
 
 [params]
 

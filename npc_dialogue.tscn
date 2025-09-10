@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtuof48g3qgkn"]
+
+[ext_resource type="Script" uid="uid://owdtjlsneqrb" path="res://NPC.gd" id="1_ktpjd"]
+[ext_resource type="Texture2D" uid="uid://ws7c6aakuh4b" path="res://npc.png" id="2_ureci"]
+[ext_resource type="FontFile" uid="uid://mlwgs8nqapxv" path="res://determination.ttf" id="3_ureci"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubc05"]
+radius = 20.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ktpjd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(76, -51)
+scale = Vector2(2.11848, 2.2318)
+texture = ExtResource("2_ureci")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(76, -51)
+scale = Vector2(2.71326, 4.96769)
+shape = SubResource("CircleShape2D_ubc05")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -25.0
+offset_top = -109.0
+offset_right = 16.0
+offset_bottom = -68.0
+scale = Vector2(5.3359, -2.65404)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -218.0
+offset_right = 18.0
+offset_bottom = -195.0
+scale = Vector2(0.928325, 1.09346)
+theme_override_colors/font_color = Color(0.955963, 0.955963, 0.955963, 1)
+theme_override_fonts/font = ExtResource("3_ureci")
+text = "text"

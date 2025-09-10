@@ -15,13 +15,14 @@ const PLAYER_DEATH_THRESHOLD: int = 20
 @export var attack_cooldown: float = 0.5  
 
 @onready var attack_cooldown_timer = $AttackCooldown
+@onready var attack_range_area = $AttackRange
 var can_attack: bool = true
 var nearby_enemies: Array = []
 
 #Health bar reference 
 var health_bar: TextureProgressBar
 var damage_per_hit: int
-
+		
 func _ready():
 	#Calculate damage per hit
 	damage_per_hit = max_health / PLAYER_DEATH_THRESHOLD
@@ -39,7 +40,7 @@ func _ready():
 	
 	#Add to player group
 	add_to_group("player")
-	
+
 	connect_to_enemy_manager()
 
 func connect_to_enemy_manager():
@@ -160,5 +161,5 @@ func die():
 	#Show defeat menu
 	if defeat_menu:
 		defeat_menu.show_menu()
-	
+		
 	queue_free()

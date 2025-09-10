@@ -24,13 +24,13 @@ var is_chasing: bool = false
 func _ready():
 	death_threshold = randi_range(death_threshold_range.x, death_threshold_range.y)
 	
-	# Configure collision shapes
+	#Configure collision shapes
 	if attack_range_area:
 		attack_range_area.get_node("CollisionShape2D").shape.radius = attack_range
 	if detection_area:
 		detection_area.get_node("CollisionShape2D").shape.radius = detection_range
 	
-	# Connect signals if not done in editor
+	#Connect signals 
 	if attack_range_area and not attack_range_area.body_entered.is_connected(_on_attack_range_body_entered):
 		attack_range_area.body_entered.connect(_on_attack_range_body_entered)
 	if detection_area and not detection_area.body_entered.is_connected(_on_detection_range_body_entered):
@@ -44,17 +44,18 @@ func _physics_process(delta):
 	var distance_to_player: float
 	
 	if nav_agent:
-		# Pathfinding movement
+		#Pathfinding movement
 		nav_agent.target_position = player_ref.global_position
 		direction = (nav_agent.get_next_path_position() - global_position).normalized()
 		distance_to_player = global_position.distance_to(player_ref.global_position)
 	else:
-		# Simple movement
+		#Simple movement
 		direction = (player_ref.global_position - global_position).normalized()
 		distance_to_player = global_position.distance_to(player_ref.global_position)
 	
+	#Small buffer to prevent jitter
 	if distance_to_player < detection_range:
-		if distance_to_player > attack_range + 10:  # Small buffer to prevent jitter
+		if distance_to_player > attack_range + 10:  
 			is_chasing = true
 			velocity = direction * speed
 			
@@ -71,7 +72,7 @@ func _physics_process(delta):
 		
 		move_and_slide()
 		
-		# Face movement direction (only flip horizontally)
+		#Movement direction (only flip horizontally)
 		if direction.x != 0:
 			$Sprite2D.flip_h = direction.x > 0
 
@@ -82,17 +83,17 @@ func attack():
 	can_attack = false
 	is_attacking = true
 	
-	# Always use the same attack animation
-	var attack_anim = "attack"  # Change this to match your single attack animation name
+	#Attack animation
+	var attack_anim = "attack"  
 	
 	if animation_player and animation_player.has_animation(attack_anim):
 		animation_player.play(attack_anim)
 		await animation_player.animation_finished
 	
-	# Deal damage if still in range
+	#Apply damage if still in range
 	if player_ref and is_instance_valid(player_ref):
 		var current_distance = global_position.distance_to(player_ref.global_position)
-		if current_distance <= attack_range * 1.2:  # Slightly larger range for player movement
+		if current_distance <= attack_range * 1.2:  
 			player_ref.take_damage(attack_damage)
 	
 	$AttackCooldown.start(attack_cooldown)
@@ -102,7 +103,7 @@ func take_damage(damage):
 	hit_count += 1
 	health -= damage
 	
-	# Visual feedback
+	#Visual effect
 	$Sprite2D.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	$Sprite2D.modulate = Color.WHITE
@@ -113,17 +114,11 @@ func take_damage(damage):
 		die()
 
 func die():
-	
-	# Play death animation if available
-	if animation_player and animation_player.has_animation("death"):
-		animation_player.play("death")
-		await animation_player.animation_finished
-	else:
-		# Fallback death effect
-		$Sprite2D.modulate = Color.RED
-		var tween = create_tween()
-		tween.tween_property($Sprite2D, "modulate:a", 0.0, 0.5)
-		await tween.finished
+	#Death effect
+	$Sprite2D.modulate = Color.RED
+	var tween = create_tween()
+	tween.tween_property($Sprite2D, "modulate:a", 0.0, 0.5)
+	await tween.finished
 	
 	queue_free()
 

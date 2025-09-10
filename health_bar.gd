@@ -27,9 +27,3 @@ func update_health(new_health: int):
 
 func update_health_color():
 	var health_percent = float(current_health) / float(max_health)
-
-
-
-
-	
-	
