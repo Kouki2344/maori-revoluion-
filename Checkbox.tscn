@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkvpgpsatme88"]
+
+[ext_resource type="Script" uid="uid://ic8krgln1fkp" path="res://checkbox.gd" id="1_r5bfl"]
+[ext_resource type="FontFile" uid="uid://mlwgs8nqapxv" path="res://determination.ttf" id="2_olraa"]
+
+[node name="CheckBox" type="CheckBox"]
+offset_left = 23.0
+offset_top = -42.0
+offset_right = 47.0
+offset_bottom = -18.0
+scale = Vector2(1.04599, 1.11985)
+script = ExtResource("1_r5bfl")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0326
+offset_top = 2.67892
+offset_right = 101.033
+offset_bottom = 25.6789
+scale = Vector2(0.861309, 0.851944)
+theme_override_fonts/font = ExtResource("2_olraa")
+text = "Mute"

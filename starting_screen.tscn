@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://cpe54pc0uwiul"]
+[gd_scene load_steps=21 format=3 uid="uid://cpe54pc0uwiul"]
 
 [ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://starting_screen.gd" id="1_mdfg2"]
+[ext_resource type="FontFile" uid="uid://mlwgs8nqapxv" path="res://determination.ttf" id="1_n2vt4"]
 [ext_resource type="Texture2D" uid="uid://cyg4pjfe2d8m7" path="res://M-ORI-REVOLUTION-7-24-2025.png" id="2_l0vbx"]
 [ext_resource type="Texture2D" uid="uid://c3ul3eh77wwh3" path="res://pixil-frame-0 (3).png" id="4_grbrr"]
 [ext_resource type="Texture2D" uid="uid://cnhxyd0eeah1v" path="res://Untitled design (1).png" id="5_grbrr"]
@@ -91,6 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.998456, 1)
 theme = SubResource("Theme_l0vbx")
+theme_override_fonts/font = ExtResource("1_n2vt4")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/hover = SubResource("StyleBoxFlat_l0vbx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mdfg2")
@@ -112,6 +114,7 @@ offset_bottom = 275.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_0g0qd")
+theme_override_fonts/font = ExtResource("1_n2vt4")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_k2t2y")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gxvq4")
@@ -131,6 +134,7 @@ offset_top = -57.48
 offset_right = 155.341
 offset_bottom = 27.52
 theme = SubResource("Theme_l0vbx")
+theme_override_fonts/font = ExtResource("1_n2vt4")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_bb5qi")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w34a2")
