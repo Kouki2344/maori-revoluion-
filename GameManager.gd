@@ -14,7 +14,7 @@ func find_all_enemies():
 	enemy_count = get_tree().get_nodes_in_group("enemies").size()
 	
 	if enemy_count == 0:
-		# Emit signal if no enemies found
+		#Emit signal if no enemies found
 		all_enemies_defeated.emit()
 
 func register_enemy(enemy):

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b05p2y52lojn7"]
+
+[ext_resource type="Script" uid="uid://b04j7jns6iygs" path="res://rest.gd" id="1_b8ldw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8ldw"]
+bg_color = Color(0.6743, 0.604337, 0.182876, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_b8ldw")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 3.0
+offset_right = 185.0
+offset_bottom = 91.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8ldw")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 134.0
+offset_bottom = 61.0
+scale = Vector2(1.4, 1.39474)
+text = " Have a rest, 
+look outside ☀️"

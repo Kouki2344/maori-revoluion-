@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3js5ocxa485p"]
+[gd_scene load_steps=12 format=3 uid="uid://d3js5ocxa485p"]
 
 [ext_resource type="Texture2D" uid="uid://cfnmr4x7ell8v" path="res://boss spritesheet.png" id="1_0bnu1"]
 [ext_resource type="Script" uid="uid://cqy4tba2vaop1" path="res://boss.gd" id="1_6xxrv"]
+[ext_resource type="PackedScene" uid="uid://67xuw5ugkvxj" path="res://enemy.tscn" id="2_skx2t"]
 
 [sub_resource type="Animation" id="Animation_lnbgr"]
 length = 0.001
@@ -80,10 +81,11 @@ radius = 106.254
 
 [node name="Boss" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_6xxrv")
+enemy_scene = ExtResource("2_skx2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(270, -55)
-scale = Vector2(1.48057, 1.5494)
+position = Vector2(276, -47)
+scale = Vector2(1.71099, 1.9847)
 texture = ExtResource("1_0bnu1")
 hframes = 5
 
@@ -95,8 +97,8 @@ libraries = {
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(277, -56)
-scale = Vector2(-2.47851, 4.22434)
+position = Vector2(279, -54)
+scale = Vector2(-1.92125, 2.71008)
 shape = SubResource("CircleShape2D_ry61v")
 
 [node name="AttackRange" type="Area2D" parent="."]
@@ -116,3 +118,8 @@ scale = Vector2(0.282042, -0.403686)
 position = Vector2(280, -70)
 scale = Vector2(3.6944, -2.55045)
 shape = SubResource("CircleShape2D_skx2t")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
