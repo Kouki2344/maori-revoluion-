@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=3 uid="uid://btolve1lk1hi4"]
+
+[ext_resource type="Texture2D" uid="uid://bdwekdaol7s63" path="res://Spritesheet/spritesheet (2).png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://dmilbfkm8qya5" path="res://Script/player.gd" id="1_onrkg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 21.9098
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "Attack"
+length = 0.3
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.965936),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+resource_name = "Walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hs0m"]
+_data = {
+&"Attack": SubResource("Animation_onrkg"),
+&"Idle": SubResource("Animation_i3pqv"),
+&"RESET": SubResource("Animation_sweqy"),
+&"Walk": SubResource("Animation_hqtel")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
+radius = 308.12
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(64.3613, 130.644)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(1, 1)
+scale = Vector2(0.956563, 0.978086)
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(188.174, -129.845)
+scale = Vector2(-2.2108, -3.88917)
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(229, -130)
+scale = Vector2(2.25063, 2.31954)
+texture = ExtResource("1_4flbx")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2hs0m")
+}
+
+[node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(-59.5883, 50.0978)
+scale = Vector2(1.24915, 1.3555)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(208, -132)
+scale = Vector2(0.49283, 0.361065)
+shape = SubResource("CircleShape2D_4flbx")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(187.128, -120.644)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2n1q4ithmvk7"]
-
-[ext_resource type="Script" uid="uid://c36qpljqrwpjf" path="res://EnemeyManager.gd" id="1_vgep6"]
-
-[node name="Node" type="Node"]
-script = ExtResource("1_vgep6")

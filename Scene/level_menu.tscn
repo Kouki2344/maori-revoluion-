@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=3 uid="uid://ithb25rl0sqb"]
+
+[ext_resource type="Texture2D" uid="uid://dd6bkj0r3dud4" path="res://PNG/skull.png" id="1_exuqh"]
+[ext_resource type="Script" uid="uid://ked4cq0r8lc4" path="res://Script/skull.gd" id="2_71ant"]
+[ext_resource type="Texture2D" uid="uid://8m1y6hrncbkt" path="res://PNG/level menu.png" id="3_onxj8"]
+[ext_resource type="Script" uid="uid://bu1ti5t7shrjn" path="res://Script/starting_screen.gd" id="4_ccxev"]
+
+[sub_resource type="Theme" id="Theme_mcy63"]
+default_font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3bd0"]
+bg_color = Color(0.325856, 0.78288, 0.458772, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krrsl"]
+bg_color = Color(0.637799, 0.61215, 0.337119, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="Theme" id="Theme_krrsl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnidy"]
+bg_color = Color(0.805445, 0.701862, 0.218273, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w32vy"]
+bg_color = Color(0.229188, 0.459691, 0.904113, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Skull" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(973, 164)
+scale = Vector2(0.41112, 0.360132)
+texture = ExtResource("1_exuqh")
+script = ExtResource("2_71ant")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.00003
+offset_top = -5.00002
+offset_right = 1993.0
+offset_bottom = 1409.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.583222, 0.456831)
+texture = ExtResource("3_onxj8")
+
+[node name="level 1 button" type="Button" parent="."]
+offset_left = 82.0
+offset_top = 240.0
+offset_right = 175.0
+offset_bottom = 332.0
+scale = Vector2(1.6946, 1.02676)
+theme = SubResource("Theme_mcy63")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g3bd0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_krrsl")
+text = "1"
+script = ExtResource("4_ccxev")
+
+[node name="level 2 button" type="Button" parent="level 1 button"]
+layout_mode = 0
+offset_left = 227.192
+offset_top = 66.2278
+offset_right = 322.192
+offset_bottom = 157.228
+theme = SubResource("Theme_mcy63")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g3bd0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_krrsl")
+text = "2"
+script = ExtResource("4_ccxev")
+
+[node name="level 3 button" type="Button" parent="level 1 button/level 2 button"]
+layout_mode = 0
+offset_left = 251.387
+offset_top = -68.1758
+offset_right = 346.387
+offset_bottom = 22.8242
+scale = Vector2(0.991697, 0.996212)
+theme = SubResource("Theme_mcy63")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g3bd0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_krrsl")
+text = "3"
+script = ExtResource("4_ccxev")
+
+[node name="Helpback button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = 533.0
+offset_right = 260.0
+offset_bottom = 617.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.868579, 1.12185)
+theme = SubResource("Theme_krrsl")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_lnidy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w32vy")
+text = "◄ BACK"
+script = ExtResource("4_ccxev")
+
+[connection signal="pressed" from="level 1 button" to="Skull" method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="level 1 button/level 2 button/level 3 button" to="Skull" method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="Helpback button" to="Helpback button" method="_on_helpback_pressed"]

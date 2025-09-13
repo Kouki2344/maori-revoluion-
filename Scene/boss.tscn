@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://d3js5ocxa485p"]
+
+[ext_resource type="Texture2D" uid="uid://cfnmr4x7ell8v" path="res://Spritesheet/boss spritesheet.png" id="1_0bnu1"]
+[ext_resource type="Script" uid="uid://cqy4tba2vaop1" path="res://Script/boss.gd" id="1_6xxrv"]
+[ext_resource type="PackedScene" uid="uid://67xuw5ugkvxj" path="res://Scene/enemy.tscn" id="2_skx2t"]
+
+[sub_resource type="Animation" id="Animation_lnbgr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_we8h1"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_o1i15"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_skx2t"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ef0k6"]
+_data = {
+&"RESET": SubResource("Animation_lnbgr"),
+&"attack": SubResource("Animation_we8h1"),
+&"idle": SubResource("Animation_o1i15"),
+&"walk": SubResource("Animation_skx2t")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ry61v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6xxrv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_skx2t"]
+radius = 106.254
+
+[node name="Boss" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_6xxrv")
+enemy_scene = ExtResource("2_skx2t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(276, -47)
+scale = Vector2(1.71099, 1.9847)
+texture = ExtResource("1_0bnu1")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ef0k6")
+}
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(279, -54)
+scale = Vector2(-1.92125, 2.71008)
+shape = SubResource("CircleShape2D_ry61v")
+
+[node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(232, -74)
+scale = Vector2(0.18971, -0.272283)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(261, -64)
+scale = Vector2(28.8793, 25.0439)
+shape = SubResource("CircleShape2D_6xxrv")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+position = Vector2(207, -81)
+scale = Vector2(0.282042, -0.403686)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(280, -70)
+scale = Vector2(3.6944, -2.55045)
+shape = SubResource("CircleShape2D_skx2t")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]

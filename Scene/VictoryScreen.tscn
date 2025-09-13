@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd4jld0kd8oo"]
+
+[ext_resource type="Script" uid="uid://c5r7knr44r7f5" path="res://Script/VictoryScreen.gd" id="1_7bnjr"]
+[ext_resource type="Texture2D" uid="uid://bb4nuow6u4w2y" path="res://PNG/VictoryScreen1.png" id="2_44yii"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_earqp"]
+bg_color = Color(1, 0.155416, 0.0580712, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="VictoryScreen" type="CanvasLayer"]
+script = ExtResource("1_7bnjr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 267.0
+offset_top = 113.0
+offset_right = 2267.0
+offset_bottom = 1527.0
+scale = Vector2(0.281353, 0.270145)
+texture = ExtResource("2_44yii")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 555.51
+offset_right = 617.51
+offset_bottom = 23.0
+scale = Vector2(11.0785, 9.37134)
+theme_override_colors/font_color = Color(0.4438, 0.774918, 0.768018, 1)
+horizontal_alignment = 1
+
+[node name="continue" type="Button" parent="TextureRect/Label"]
+layout_mode = 0
+offset_left = 28.7798
+offset_top = 81.7659
+offset_right = 107.78
+offset_bottom = 112.766
+scale = Vector2(0.729998, 0.978324)
+text = "Continue"
+
+[node name="restart" type="Button" parent="TextureRect/Label"]
+layout_mode = 0
+offset_left = 19.1551
+offset_top = 122.451
+offset_right = 98.1551
+offset_bottom = 153.451
+scale = Vector2(0.469372, 0.665859)
+text = "Restart"
+
+[node name="quit" type="Button" parent="TextureRect/Label"]
+layout_mode = 0
+offset_left = 60.8624
+offset_top = 122.056
+offset_right = 139.862
+offset_bottom = 153.056
+scale = Vector2(0.472294, 0.679448)
+theme_override_styles/normal = SubResource("StyleBoxFlat_earqp")
+text = "Quit"
+
+[connection signal="pressed" from="TextureRect/Label/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="TextureRect/Label/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="TextureRect/Label/quit" to="." method="_on_quit_pressed"]
